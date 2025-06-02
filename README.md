@@ -1,1 +1,1 @@
-# AcoreSeasonalStatsApi
+# Acore.SeasonalStats
