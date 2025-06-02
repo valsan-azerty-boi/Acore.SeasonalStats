@@ -10,8 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1-Preview.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\Acore.SeasonalStats.Application\Acore.SeasonalStats.Application.csproj" />
+	  <ProjectReference Include="..\Acore.SeasonalStats.Infrastructure\Acore.SeasonalStats.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
