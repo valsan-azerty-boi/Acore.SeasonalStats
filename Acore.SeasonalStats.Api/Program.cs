@@ -1,22 +1,13 @@
 using Acore.SeasonalStats.Application.Commands;
 using Acore.SeasonalStats.Application.Queries;
 using Acore.SeasonalStats.Infrastructure;
+using Acore.SeasonalStats.Infrastructure.Interfaces;
+using Acore.SeasonalStats.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddDbContext<SeasonalStatsDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("MySqlConnection"),
-        new MySqlServerVersion(new Version(8, 4, 3))
-    )
-);
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddMediatR(cfg =>
 {
@@ -39,6 +30,17 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(GetWorldQueryHandler).Assembly);
 });
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<SeasonalStatsDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("MySqlConnection"),
+        new MySqlServerVersion(new Version(8, 4, 3))
+    )
+);
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -54,9 +56,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

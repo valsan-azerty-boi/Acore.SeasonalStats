@@ -54,3 +54,4 @@ TestResult.xml
 nunit-*.xml
 /.vs
 /Acore.SeasonalStats.Api/Properties/PublishProfiles/_myrepo_.azurecr.io.pubxml.user
+/Acore.SeasonalStats.sln.DotSettings.user

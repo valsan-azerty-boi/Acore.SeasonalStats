@@ -1,19 +1,17 @@
-﻿using MediatR;
+﻿using Acore.SeasonalStats.Infrastructure;
+using Acore.SeasonalStats.Infrastructure.Interfaces;
+using Acore.SeasonalStats.Infrastructure.Repository;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Acore.SeasonalStats.Application.Queries;
 
-public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, CategoryViewModel>
+public class GetCategoryQueryHandler(ICategoryRepository categoryRepository)
+    : IRequestHandler<GetCategoryQuery, CategoryViewModel?>
 {
-    public GetCategoryQueryHandler()
+    public async Task<CategoryViewModel?> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
     {
-        //_categoryRepository = categoryRepository;
-    }
-
-    public async Task<CategoryViewModel> Handle(GetCategoryQuery request, CancellationToken cancellationToken)
-    {
-        //var category = await _categoryRepository.GetCategory(cancellationToken);
-        //return new CategoryViewModel(category));
-
-        return await Task.FromResult(new CategoryViewModel(request.CategoryId, "Test categ"));
+        var category = await categoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
+        return category != null ? new CategoryViewModel(category.Id, category.Name) : null;
     }
 }
