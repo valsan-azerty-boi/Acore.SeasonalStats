@@ -4,6 +4,7 @@ using Acore.SeasonalStats.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Acore.SeasonalStats.Infrastructure.Migrations
 {
     [DbContext(typeof(SeasonalStatsDbContext))]
-    partial class SeasonalStatsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250602195701_String_length_limit")]
+    partial class String_length_limit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

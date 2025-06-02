@@ -18,7 +18,7 @@ public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuer
         return await Task.FromResult(new List<CategoryViewModel>
         {
             new(1, "test PvE categ"),
-            new(2, "test PvP categ"),
+            new(2, "test PvP categ")
         });
     }
 }

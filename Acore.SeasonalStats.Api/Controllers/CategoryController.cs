@@ -1,4 +1,5 @@
 ﻿using Acore.SeasonalStats.Application;
+using Acore.SeasonalStats.Application.Commands;
 using Acore.SeasonalStats.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -29,9 +30,21 @@ public class CategoryController(IMediator mediator) : Controller
     [Route("{categoryId:int}")]
     [Produces(typeof(CategoryViewModel))]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Get(int categoryId, CancellationToken cancellationToken)
     {
         return Ok(await _mediator.Send(new GetCategoryQuery(categoryId), cancellationToken));
+    }
+
+    [HttpPost]
+    [Produces(typeof(CategoryViewModel))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Upsert(UpsertCategoryCommand command, CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(command, cancellationToken));
     }
 }

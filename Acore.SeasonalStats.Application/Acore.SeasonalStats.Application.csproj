@@ -9,10 +9,6 @@
     <ProjectReference Include="..\Acore.SeasonalStats.Infrastructure\Acore.SeasonalStats.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

@@ -2,4 +2,4 @@
 
 namespace Acore.SeasonalStats.Application.Queries;
 
-public record GetWorldQuery(int WorldId) : IRequest<WorldViewModel>;
+public record GetWorldQuery(int ServerId) : IRequest<WorldViewModel>;

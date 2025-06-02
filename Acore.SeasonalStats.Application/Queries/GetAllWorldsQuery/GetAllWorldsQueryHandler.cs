@@ -18,7 +18,7 @@ public class GetAllWorldsQueryHandler : IRequestHandler<GetAllWorldsQuery, IEnum
         return await Task.FromResult(new List<WorldViewModel>
         {
             new(1, "Acore PvE test realm"),
-            new(2, "Acore PvP test realm"),
+            new(2, "Acore PvP test realm")
         });
     }
 }

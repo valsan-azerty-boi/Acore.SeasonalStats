@@ -14,6 +14,6 @@ public class GetWorldQueryHandler : IRequestHandler<GetWorldQuery, WorldViewMode
         //var world = await _worldRepository.GetWorld(cancellationToken);
         //return new WorldViewModel(world));
 
-        return await Task.FromResult(new WorldViewModel(request.WorldId, "Test realm"));
+        return await Task.FromResult(new WorldViewModel(request.ServerId, "Test realm"));
     }
 }
